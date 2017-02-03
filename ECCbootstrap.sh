@@ -2,7 +2,7 @@ install_ECC_Tools() {
   # Installing Burp suite from ECCTools Github Repository
   echo "ECC tools: Installing ECC Tools"
 	CDIR=$(pwd)
-	git clone --recursive https://github.com/LalithaKurma/ECCTools /tmp/ECCTools >> $HOME/ECC-install.log 2>&1
+	git clone --recursive https://github.com/rinnimatthews/ECC-tools /tmp/ECCTools >> $HOME/ECC-install.log 2>&1
 	cd /tmp/ECCTools
 	#bash burpsuite_free_linux_v1_7_16.sh >> $HOME/ECC-install.log 2>&1
         #gdebi netdiscover_0.3beta7~pre+svn118-1_amd64.deb	
