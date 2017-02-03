@@ -186,7 +186,7 @@ install_ubuntu_14.04_deps() {
     add-apt-repository -y ppa:tualatrix/ppa  >> $HOME/ECC-install.log 2>&1 || return 1
 
     echoinfo "Adding ECC Repository: $@"
-    add-apt-repository -y ppa:ECC/$@  >> $HOME/ECC-install.log 2>&1 || return 1
+    add-apt-repository -y ppa:sift/$@  >> $HOME/ECC-install.log 2>&1 || return 1
 
     echoinfo "Adding GIFT Repository: Stable"
     add-apt-repository -y ppa:gift/stable >> $HOME/ECC-install.log 2>&1 || return 1
@@ -620,7 +620,7 @@ configure_ubuntu_ECC_vm() {
 	find -L $HOME/Desktop -type l -delete
 
   echoinfo "ECC VM: Adding all ECC Resources to $SUDO_USER Desktop"
-	for file in /usr/share/sift/resources/*.pdf
+	for file in /usr/share/ECC/resources/*.pdf
 	do
 		base=`basename $file`
 		if [ ! -L $HOME/Desktop/$base ]; then
@@ -648,7 +648,7 @@ configure_ubuntu_14.04_ECC_vm() {
   sudo -u $SUDO_USER gsettings set com.canonical.Unity.Launcher favorites "['application://nautilus.desktop', 'application://gnome-terminal.desktop', 'application://firefox.desktop', 'application://gnome-screenshot.desktop', 'application://gcalctool.desktop', 'application://bless.desktop', 'application://autopsy.desktop', 'application://wireshark.desktop']" >> $HOME/ECC-install.log 2>&1
 
   # Works in 12.04 and 14.04
-  sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg >> $HOME/ECC-install.log 2>&1
+  sudo -u $SUDO_USER gsettings set org.gnome.desktop.background picture-uri file:///usr/share/ECC/images/forensics_blue.jpg >> $HOME/ECC-install.log 2>&1
 
   # Works in 14.04 
 	if [ ! -d $HOME/.config/autostart ]; then
@@ -657,20 +657,20 @@ configure_ubuntu_14.04_ECC_vm() {
 
   # Works in 14.04 too.
 	if [ ! -L $HOME/.config/autostart ]; then
-		sudo -u $SUDO_USER cp /usr/share/sift/other/gnome-terminal.desktop $HOME/.config/autostart
+		sudo -u $SUDO_USER cp /usr/share/ECC/other/gnome-terminal.desktop $HOME/.config/autostart
 	fi
     
   # Works in 14.04 too
 	if [ ! -e /usr/share/unity-greeter/logo.png.ubuntu ]; then
 		sudo cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.ubuntu
-		sudo cp /usr/share/sift/images/login_logo.png /usr/share/unity-greeter/logo.png
+		sudo cp /usr/share/ECC/images/login_logo.png /usr/share/unity-greeter/logo.png
 	fi
 
   # Setup user favorites (only for 12.04)
-  sudo -u $SUDO_USER dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'autopsy.desktop', 'wireshark.desktop']" >> $HOME/sift-install.log 2>&1
+  sudo -u $SUDO_USER dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'autopsy.desktop', 'wireshark.desktop']" >> $HOME/ECC-install.log 2>&1
 
   # Setup the login background image
-  cp /usr/share/sift/images/forensics_blue.jpg /usr/share/backgrounds/warty-final-ubuntu.png
+  cp /usr/share/ECC/images/forensics_blue.jpg /usr/share/backgrounds/warty-final-ubuntu.png
   
   chown -R $SUDO_USER:$SUDO_USER $HOME
 }
