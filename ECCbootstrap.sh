@@ -1,6 +1,6 @@
 install_ECC_Tools() {
   # Installing Burp suite from ECCTools Github Repository
-  echo "ECC tools: Installing ECC Tools"
+  echo "ECC tools: Installing CEH-v10 Tools"
 	CDIR=$(pwd)
 	git clone --recursive https://github.com/rinnimatthews/ECC-tools /tmp/ECCTools >> $HOME/ECC-install.log 2>&1
 	cd /tmp/ECCTools
@@ -23,7 +23,7 @@ complete_message() {
 
 
 #Calling to install ECC-Tools    
-echo "ECC: Welcome"
+echo "Welcome to EC-Council OS Installation Suite"
 install_ECC_Tools
 complete_message
 
