@@ -12,6 +12,9 @@ install_ECC_Tools() {
 	echo "* Info: Installing Nmap Tool..."        
 	dpkg -i nmap_7.40-2_amd64.deb && apt install -f
         echo "ECC tools: Completed Nmap Tool Installation"
+	echo "* Info: Installing hping3 Tool..."        
+	dpkg -i nmap_7.40-2_amd64.deb && apt install -f
+        echo "ECC tools: Completed hping3 Tool Installation"
         cd $CDIR
 	rm -r -f /tmp/ECCTools
 }
