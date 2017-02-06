@@ -1,5 +1,3 @@
-#! /bin/bash
-
 
 install_ECC_Tools() {
   # Installing Burp suite from ECCTools Github Repository
@@ -22,9 +20,9 @@ install_ECC_Tools() {
 	echo "* Info: Installing Whois Tool..."        
 	dpkg -i whois_5.2.14_amd64.deb && apt install -f
         echo "ECC tools: Completed Whois Tool Installation"
-	echo "* Info: Installing SNMPCHECK Tool..."        
-	dpkg -i snmpcheck_1.9-0kali1_all.deb && apt install -f
-        echo "ECC tools: Completed SNMPCHECK Tool Installation"
+	#echo "* Info: Installing SNMPCHECK Tool..."        
+	#dpkg -i snmpcheck_1.9-0kali1_all.deb && apt install -f
+        #echo "ECC tools: Completed SNMPCHECK Tool Installation"
 
         cd $CDIR
 	rm -r -f /tmp/ECC-tools
