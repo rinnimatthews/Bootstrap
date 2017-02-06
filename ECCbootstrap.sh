@@ -1,3 +1,6 @@
+#! /bin/bash
+
+
 install_ECC_Tools() {
   # Installing Burp suite from ECCTools Github Repository
   echo "ECC tools: Installing CEH-v10 Tools"
