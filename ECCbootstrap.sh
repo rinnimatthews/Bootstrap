@@ -9,9 +9,9 @@ install_ECC_Tools() {
 	#bash burpsuite_free_linux_v1_7_16.sh >> $HOME/ECC-install.log 2>&1
         #gdebi netdiscover_0.3beta7~pre+svn118-1_amd64.deb
 
-	echo "* Info: Installing SNMP Tool..."        
-	dpkg -i snmp_5.4.3~dfsg-2.8+deb7u1_amd64.deb && apt install -f
-        echo "ECC tools: Completed SNMP Tool Installation"	
+	#echo "* Info: Installing SNMP Tool..."        
+	#dpkg -i snmp_5.4.3~dfsg-2.8+deb7u1_amd64.deb && apt install -f
+        #echo "ECC tools: Completed SNMP Tool Installation"	
 	echo "* Info: Installing Nmap Tool..."        
 	dpkg -i nmap_7.40-2_amd64.deb && apt install -f
         echo "ECC tools: Completed Nmap Tool Installation"
