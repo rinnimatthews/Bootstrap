@@ -31,16 +31,17 @@ install_ECC_Tools() {
         cd $CDIR
 	rm -r -f /tmp/ECC-tools
 }
-install_setoolkit(){
-echo "ECC tools: Installing SE-Toolkit"
-	CDIR=$(pwd)
-cd /tmp
-git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
-cd /tmp/set
-python setup.py install
- cd $CDIR
-rm -r -f /tmp/set
-}
+#install_setoolkit(){
+#echo "ECC tools: Installing SE-Toolkit"
+#	CDIR=$(pwd)
+#cd /tmp
+#git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
+#cd /tmp/set
+#python setup.py install
+# cd $CDIR
+#rm -r -f /tmp/set
+#echo "ECC tools: Completed SEToolkit Installation"
+#}
 
 complete_message() {
     echo
@@ -51,7 +52,7 @@ complete_message() {
 #Calling to install ECC-Tools    
 echo "Welcome to EC-Council OS Installation Suite"
 install_ECC_Tools
-install_setoolkit
+#install_setoolkit
 complete_message
 
 
