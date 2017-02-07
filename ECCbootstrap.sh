@@ -19,7 +19,7 @@ __apt_get_install_noinput() {
 #}
 
 install_snmpcheck_dependencies(){
-packages="man-db"
+packages="libsnmp15"
    echo "Installing snmpcheck dependency packages"
    for PACKAGE in $packages; do
         __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
