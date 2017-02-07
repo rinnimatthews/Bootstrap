@@ -37,7 +37,7 @@ echo "ECC tools: Installing SE-Toolkit"
 cd /tmp
 git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
 cd /tmp/set
-python setup.py
+python setup.py install
  cd $CDIR
 rm -r -f /tmp/set
 }
