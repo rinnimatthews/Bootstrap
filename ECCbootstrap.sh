@@ -23,7 +23,7 @@ packages="ruby
 ruby-snmp
 libnumber-bytes-human-perl
 libnet-snmp-perl"
-   echo "Installing dsniff dependency packages"
+   echo "Installing snmpcheck dependency packages"
    for PACKAGE in $packages; do
         __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
         ERROR=$?
