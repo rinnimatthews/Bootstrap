@@ -24,6 +24,9 @@ install_ECC_Tools() {
 	echo "* Info: Installing Whois Tool..."        
 	#dpkg -i whois_5.2.14_amd64.deb && apt install -f
         echo "ECC tools: Completed Whois Tool Installation"
+	echo "* Info: Installing dsniff Tool..."        
+	dpkg -i dsniff_2.4b1+debian-22_amd64.deb && apt install -f
+        echo "ECC tools: Completed dsniff Tool Installation"
 	#echo "* Info: Installing SNMPCHECK Tool..."        
 	#dpkg -i snmpcheck_1.9-0kali1_all.deb && apt install -f
         #echo "ECC tools: Completed SNMPCHECK Tool Installation"
