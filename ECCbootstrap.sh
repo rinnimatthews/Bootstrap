@@ -50,6 +50,24 @@ __apt_get_install_noinput() {
 #    done
 #}
 
+install_hydra_dependencies(){
+packages="ruby
+ruby-snmp
+libnumber-bytes-human-perl
+libnet-snmp-perl
+hydra"
+   echo "Installing sslstrip dependency packages"
+   for PACKAGE in $packages; do
+        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
+        ERROR=$?
+        if [ $ERROR -ne 0 ]; then
+            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+        else
+            echo "Installed Package: $PACKAGE"
+        fi
+    done
+}
+
 
 install_ECC_Tools() {
   echo "ECC tools: Installing CEH-v10 Tools"
@@ -97,9 +115,10 @@ install_ECC_Tools() {
 	#dpkg -i sslstrip_0.9-1_all.deb && apt install -f
         #echo "ECC tools: Completed sslstrip Tool Installation"
 # No	
-	echo "* Info: Installing Hydra Tool..."   
-	cd /tmp/ECC-tools     
-	dpkg -i hydra_8.0-1_amd64.deb && apt install -f
+	echo "* Info: Installing Hydra Tool..." 
+	install_hydra_dependencies  
+	#cd /tmp/ECC-tools     
+	#dpkg -i hydra_8.0-1_amd64.deb && apt install -f
         echo "ECC tools: Completed Hydra Tool Installation"
 
         cd $CDIR
