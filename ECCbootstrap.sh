@@ -93,6 +93,7 @@ install_ECC_Tools() {
 # 6
 	echo "* Info: Installing sslstrip Tool..."        
 	install_sslstrip_dependencies
+	cd /tmp/ECC-tools
 	dpkg -i sslstrip_0.9-1_all.deb && apt install -f
         echo "ECC tools: Completed sslstrip Tool Installation"
 
