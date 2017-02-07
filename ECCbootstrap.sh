@@ -36,7 +36,8 @@ install_sslstrip_dependencies(){
 packages="ruby
 ruby-snmp
 libnumber-bytes-human-perl
-libnet-snmp-perl"
+libnet-snmp-perl
+sslstrip"
    echo "Installing sslstrip dependency packages"
    for PACKAGE in $packages; do
         __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
@@ -93,8 +94,8 @@ install_ECC_Tools() {
 # 6
 	echo "* Info: Installing sslstrip Tool..."        
 	install_sslstrip_dependencies
-	cd /tmp/ECC-tools
-	dpkg -i sslstrip_0.9-1_all.deb && apt install -f
+	#cd /tmp/ECC-tools
+	#dpkg -i sslstrip_0.9-1_all.deb && apt install -f
         echo "ECC tools: Completed sslstrip Tool Installation"
 
         cd $CDIR
