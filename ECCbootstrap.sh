@@ -1,3 +1,22 @@
+__apt_get_install_noinput() {
+    apt-get install -y -o DPkg::Options::=--force-confold $@; return $?
+}
+
+install_dsniff_dependencies(){
+packages="libdb5.1
+libnet1
+libnids1.21"
+   echo "Installing dsniff dependency packages"
+   for PACKAGE in $packages; do
+        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
+        ERROR=$?
+        if [ $ERROR -ne 0 ]; then
+            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+        else
+            echo "Installed Package: $PACKAGE"
+        fi
+    done
+}
 
 install_ECC_Tools() {
   # Installing Burp suite from ECCTools Github Repository
@@ -25,6 +44,7 @@ install_ECC_Tools() {
 	#dpkg -i whois_5.2.14_amd64.deb && apt install -f
         echo "ECC tools: Completed Whois Tool Installation"
 	echo "* Info: Installing dsniff Tool..."        
+	install_dsniff_dependencies
 	dpkg -i dsniff_2.4b1+debian-22_amd64.deb && apt install -f
         echo "ECC tools: Completed dsniff Tool Installation"
 	#echo "* Info: Installing SNMPCHECK Tool..."        
