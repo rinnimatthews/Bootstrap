@@ -2,26 +2,27 @@ __apt_get_install_noinput() {
     apt-get install -y -o DPkg::Options::=--force-confold $@; return $?
 }
 
-install_dsniff_dependencies(){
-packages="libdb5.1
-libnet1
-libnids1.21"
-   echo "Installing dsniff dependency packages"
-   for PACKAGE in $packages; do
-        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
-        ERROR=$?
-        if [ $ERROR -ne 0 ]; then
-            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
-        else
-            echo "Installed Package: $PACKAGE"
-        fi
-    done
-}
+#install_dsniff_dependencies(){
+#packages="libdb5.1
+#libnet1
+#libnids1.21"
+#   echo "Installing dsniff dependency packages"
+#   for PACKAGE in $packages; do
+#        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log #2>&1
+ #       ERROR=$?
+ #       if [ $ERROR -ne 0 ]; then
+ #           echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+ #       else
+ #           echo "Installed Package: $PACKAGE"
+ #       fi
+ #   done
+#}
 
 install_snmpcheck_dependencies(){
-packages="libdb5.1
-libnet1
-libnids1.21"
+packages="ruby
+ruby-snmp
+libnumber-bytes-human-perl
+libnet-snmp-perl"
    echo "Installing dsniff dependency packages"
    for PACKAGE in $packages; do
         __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
