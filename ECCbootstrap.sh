@@ -51,12 +51,13 @@ __apt_get_install_noinput() {
 #}
 
 install_hydra_dependencies(){
-packages="ruby
-ruby-snmp
-libnumber-bytes-human-perl
-libnet-snmp-perl
-hydra"
-   echo "Installing sslstrip dependency packages"
+#packages="ruby
+#ruby-snmp
+#libnumber-bytes-human-perl
+#libnet-snmp-perl
+#hydra"
+packages="hydra"
+   echo "Installing hydra dependency packages"
    for PACKAGE in $packages; do
         __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
         ERROR=$?
