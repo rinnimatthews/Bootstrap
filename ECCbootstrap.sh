@@ -18,19 +18,19 @@ __apt_get_install_noinput() {
  #   done
 #}
 
-install_snmpcheck_dependencies(){
-packages="libsnmp15"
-   echo "Installing snmpcheck dependency packages"
-   for PACKAGE in $packages; do
-        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
-        ERROR=$?
-        if [ $ERROR -ne 0 ]; then
-            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
-        else
-            echo "Installed Package: $PACKAGE"
-        fi
-    done
-}
+#install_snmpcheck_dependencies(){
+#packages="libsnmp15"
+#   echo "Installing snmpcheck dependency packages"
+#   for PACKAGE in $packages; do
+#        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
+#        ERROR=$?
+#        if [ $ERROR -ne 0 ]; then
+#            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+#        else
+#            echo "Installed Package: $PACKAGE"
+#        fi
+#    done
+#}
 
 install_ECC_Tools() {
   echo "ECC tools: Installing CEH-v10 Tools"
@@ -42,8 +42,9 @@ install_ECC_Tools() {
         #gdebi netdiscover_0.3beta7~pre+svn118-1_amd64.deb
 
 	echo "* Info: Installing SNMP Tool..."  
-         install_snmpcheck_dependencies      
-	 dpkg -i snmp_5.4.3~dfsg-2.8+deb7u1_amd64.deb && apt install -f
+ #      install_snmpcheck_dependencies  
+        dpkg -i libsnmp15_5.4.3~dfsg-2.8+deb7u1_amd64.deb && apt install -f   
+	dpkg -i snmp_5.4.3~dfsg-2.8+deb7u1_amd64.deb && apt install -f
         echo "ECC tools: Completed SNMP Tool Installation"	
 	echo "* Info: Installing Nmap Tool..."        
 	#dpkg -i nmap_7.40-2_amd64.deb && apt install -f
