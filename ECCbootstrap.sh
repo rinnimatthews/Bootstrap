@@ -97,7 +97,8 @@ install_ECC_Tools() {
 	#dpkg -i sslstrip_0.9-1_all.deb && apt install -f
         #echo "ECC tools: Completed sslstrip Tool Installation"
 # No	
-	echo "* Info: Installing Hydra Tool..."        
+	echo "* Info: Installing Hydra Tool..."   
+	cd /tmp/ECC-tools     
 	dpkg -i hydra_8.0-1_amd64.deb && apt install -f
         echo "ECC tools: Completed Hydra Tool Installation"
 
