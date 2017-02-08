@@ -2,6 +2,21 @@ __apt_get_install_noinput() {
     apt-get install -y -o DPkg::Options::=--force-confold $@; return $?
 }
 
+install_main_dependencies(){
+packages="dpkg
+git"
+   echo "Installing snmpcheck dependency packages"
+   for PACKAGE in $packages; do
+        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
+        ERROR=$?
+        if [ $ERROR -ne 0 ]; then
+            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+        else
+            echo "Installed Package: $PACKAGE"
+        fi
+    done
+}
+
 install_dsniff_dependencies(){
 packages="libdb5.1
 libnet1
@@ -21,6 +36,20 @@ libnids1.21"
 install_snmpcheck_dependencies(){
 packages="libsnmp15"
    echo "Installing snmpcheck dependency packages"
+   for PACKAGE in $packages; do
+        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
+        ERROR=$?
+        if [ $ERROR -ne 0 ]; then
+            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+        else
+            echo "Installed Package: $PACKAGE"
+        fi
+    done
+}
+
+install_setoolkit_dependencies(){
+packages="python"
+   echo "Installing setoolkit dependency packages"
    for PACKAGE in $packages; do
         __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
         ERROR=$?
@@ -126,7 +155,7 @@ install_ECC_Tools() {
 	git clone --recursive https://github.com/rinnimatthews/ECC-tools /tmp/ECC-tools >> $HOME/ECC-install.log 2>&1
 	cd /tmp/ECC-tools
 
-	
+	install_main_dependencies
 # 1	
 	echo "* Info: Installing Nmap Tool..."        
 	dpkg -i nmap_7.40-2_amd64.deb && apt install -f
@@ -170,7 +199,8 @@ install_ECC_Tools() {
 #	dpkg -i hydra_8.0-1_amd64.deb && apt install -f
         echo "ECC tools: Completed Hydra Tool Installation"
 # 8	
-	echo "* Info: Installing SE-Toolkit..."        
+	echo "* Info: Installing SE-Toolkit..."
+	install_setoolkit_dependencies        
 	install_setoolkit
         echo "ECC tools: Completed SEToolkit Installation"
 # 9
