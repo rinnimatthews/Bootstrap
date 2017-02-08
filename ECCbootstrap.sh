@@ -73,10 +73,13 @@ packages="hydra"
 }
 
 install_wpscan_dependencies(){
-packages="libcurl4-openssl-dev
+packages="git
+docker
+libcurl4-openssl-dev
 libxml2
 libxml2-dev
 libxslt1-dev
+ruby2.0
 ruby-dev
 build-essential
 libgmp-dev
@@ -115,6 +118,7 @@ cd $CDIR
 rm -r -f /tmp/wpscan
 }
 
+
 install_ECC_Tools() {
   echo "ECC tools: Installing CEH-v10 Tools"
 	CDIR=$(pwd)
@@ -122,11 +126,6 @@ install_ECC_Tools() {
 	git clone --recursive https://github.com/rinnimatthews/ECC-tools /tmp/ECC-tools >> $HOME/ECC-install.log 2>&1
 	cd /tmp/ECC-tools
 
-# 9
-	echo "* Info: Installing wpscan Tool..."        
-	install_wpscan_dependencies
-	install_wpscan
-        echo "ECC tools: Completed wpscan Tool Installation"
 	
 # 1	
 	echo "* Info: Installing Nmap Tool..."        
@@ -174,6 +173,11 @@ install_ECC_Tools() {
 	echo "* Info: Installing SE-Toolkit..."        
 	install_setoolkit
         echo "ECC tools: Completed SEToolkit Installation"
+# 9
+	echo "* Info: Installing wpscan Tool..."        
+	install_wpscan_dependencies
+	install_wpscan
+        echo "ECC tools: Completed wpscan Tool Installation"
 
         cd $CDIR
 	rm -r -f /tmp/ECC-tools
