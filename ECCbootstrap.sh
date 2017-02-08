@@ -72,6 +72,29 @@ packages="hydra"
     done
 }
 
+install_wpscan_dependencies(){
+packages="libcurl4-openssl-dev
+libxml2
+libxml2-dev
+libxslt1-dev
+ruby-dev
+build-essential
+libgmp-dev
+zlib1g-dev"
+
+   echo "Installing wpscan dependency packages"
+   for PACKAGE in $packages; do
+        __apt_get_install_noinput $PACKAGE >> $HOME/ECC-install.log 2>&1
+        ERROR=$?
+        if [ $ERROR -ne 0 ]; then
+            echo "Install Failure: $PACKAGE (Error Code: $ERROR)"
+        else
+            echo "Installed Package: $PACKAGE"
+        fi
+    done
+}
+
+
 install_setoolkit(){
 CDIR=$(pwd)
 cd /tmp
@@ -82,12 +105,28 @@ cd $CDIR
 rm -r -f /tmp/set
 }
 
+install_wpscan(){
+CDIR=$(pwd)
+cd /tmp
+git clone https://github.com/wpscanteam/wpscan.git /tmp/wpscan
+cd /tmp/wpscan
+sudo gem install bundler && bundle install --without test
+cd $CDIR
+rm -r -f /tmp/wpscan
+}
+
 install_ECC_Tools() {
   echo "ECC tools: Installing CEH-v10 Tools"
 	CDIR=$(pwd)
 	mkdir /tmp/ECC-tools
 	git clone --recursive https://github.com/rinnimatthews/ECC-tools /tmp/ECC-tools >> $HOME/ECC-install.log 2>&1
 	cd /tmp/ECC-tools
+
+# 9
+	echo "* Info: Installing wpscan Tool..."        
+	install_wpscan_dependencies
+	install_wpscan
+        echo "ECC tools: Completed wpscan Tool Installation"
 	
 # 1	
 	echo "* Info: Installing Nmap Tool..."        
@@ -130,11 +169,11 @@ install_ECC_Tools() {
 	echo "* Info: Installing Hydra Tool..." 
 	install_hydra_dependencies  
 #	dpkg -i hydra_8.0-1_amd64.deb && apt install -f
-       echo "ECC tools: Completed Hydra Tool Installation"
+        echo "ECC tools: Completed Hydra Tool Installation"
 # 8	
 	echo "* Info: Installing SE-Toolkit..."        
 	install_setoolkit
-       echo "ECC tools: Completed SEToolkit Installation"
+        echo "ECC tools: Completed SEToolkit Installation"
 
         cd $CDIR
 	rm -r -f /tmp/ECC-tools
